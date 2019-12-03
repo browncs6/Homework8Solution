@@ -1,0 +1,26 @@
+{% extends "main.html" %}
+{% block container %}
+{% import "bootstrap/wtf.html" as wtf %}
+{{ wtf.quick_form(form) }}
+<form action="/remove" method="POST">
+<table>
+  <th>Remove</th>
+  <th>Item</th>
+  <th>Notes</th>
+  {% for todo in todo_list %}
+  <tr>
+    <td>
+      <input type="checkbox" name="boxes" value={{ loop.index0 }}>
+    </td>
+    <td class="datafield">
+      {{ todo[0] }}
+    </td>
+    <td class="datafield">
+      {{ todo[1] }}
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+<input type="submit" value="Done">
+</form>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block content %}
+  <div class="jumbo">
+    <h2>Welcome to Greeter!</h2>
+
+      <!-- You may want to keep this form and the if block below for your reference -->
+      <h3>
+        <form action="/greet" method="POST">
+          <div>
+            <label for="user">Name:</label>
+            <input type="text" id="user" name="user" required="true">
+            <label for="msg">Message:</label>
+            <input type="text" id="msg" name="msg" required="true">
+            <input type="submit">
+          </div>
+        </form>
+      </h3>
+
+    {% if user %}
+      <h3>Hi, {{ user }}!</h3>
+      {% if msg %}
+        <h3>Your message is: <b>{{ msg }}</b></h3>
+      {% else %}
+        <h3>No message detected!</h3>
+      {% endif %}
+    {% else %}
+      <h3>No user detected!</h3>
+    {% endif %}
+    {% if pic %}
+        <img class='center' src={{ url_for('static', filename='img/' + pic) }} height="100" width="100">
+    {% endif %}
+  </div>
+{% endblock %}

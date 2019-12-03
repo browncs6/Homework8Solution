@@ -1,0 +1,1 @@
+This problem requires you to install pillow via `pip3 install pillow`.

@@ -1,0 +1,34 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+
+main {
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  resize: none;
+  overflow: auto;
+}
+
+main>div {
+  min-width: 720px;
+  padding: 20px;
+  resize: none;
+  overflow: auto;
+}
+
+#loader {
+  width: 512px;
+  height: 512px;
+  background: url(spinner.gif) 50% no-repeat;
+  border: 1px solid white;
+  border-radius: 5px;
+    display: none;
+    margin-top: 32px;
+  margin-left:auto;
+  margin-right:auto;
+}

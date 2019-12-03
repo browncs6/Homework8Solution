@@ -1,0 +1,63 @@
+{% extends "bootstrap/base.html" %}
+{% block title %}Mandelbrot plotter{% endblock %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+{% endblock %}
+
+{% block content %}
+<main>
+
+    <div>
+        <h3>Mandelbrot viewer:</h3>
+        <p>Please enter a center coordinate and a step size:</p>
+               <form id="params" class="form-inline" role="form">
+         <div class="form-group">
+            <label for="X">X:</label>
+             <input name="X" type="text" value="0.35" class="form-control text-right">
+         </div>
+         <div class = "form-group">
+             <label for="Y">Y:</label>
+                    <input name="Y" type="text" value="0.5" class="form-control text-right">
+         </div>
+             <div class = "form-group">
+            <label for="step">step:</label>
+                    <input name="step" type="text" value="0.0008" class="form-control text-right">
+             </div>
+         <input type="button" value="Plot" id="post-form" class="btn btn-primary">
+      </form>
+        <div id="viewer">
+            <!--work with canvas-->
+            <div id="loader">
+                <canvas id="plot" width="512px" height="512px"></canvas>
+            </div>
+
+        </div>
+    </div>
+
+</main>
+{% endblock %}
+
+{% block scripts %}
+{{super()}}
+<script>
+    $("input#post-form").click(function () {
+
+        // show spinner for the slow load request
+        $('#loader').show();
+
+        $('#plot').hide();
+        var c = document.getElementById("plot");
+        var ctx = c.getContext("2d");
+        var img = new Image();
+        img.onload = function () {
+            ctx.drawImage(img, 0, 0);
+
+            // hide spinner
+            $('#plot').show();
+        };
+        img.src = 'mandelbrot?' + $('form#params').serialize();
+    });
+</script>
+{% endblock %}
